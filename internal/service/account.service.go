@@ -13,7 +13,7 @@ func NewAccountService(repository domain.IAccountRepository) *AccountService {
 	return &AccountService{repository: repository}
 }
 
-func (service *AccountService) Create(input dto.AccountDtoInput) (*dto.AccountDtoOuput, error) {
+func (service *AccountService) CreateAccount(input dto.AccountDtoInput) (*dto.AccountDtoOuput, error) {
 	account := dto.ToDomain(input)
 	existingAccount, err := service.repository.FindByAPIKey(account.APIKey)
 	if err != nil {
