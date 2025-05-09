@@ -33,8 +33,12 @@ func (repository *AccountRepository) FindByAPIKey(apiKey string) (*domain.Accoun
 	var createdAt, updatedAt time.Time
 	err := repository.db.QueryRow("SELECT id, name, email, api_key, balance, created_at, updated_at FROM accounts WHERE api_key = $1", apiKey).Scan(&account.ID, &account.Name, &account.Email, &account.APIKey, &account.Balance, &createdAt, &updatedAt)
 
-	if err != nil {
+	if err == sql.ErrNoRows {
 		return nil, domain.ErrAccountNotFound
+	}
+
+	if err != nil {
+		return nil, err
 	}
 	account.CreatedAt = createdAt
 	account.UpdatedAt = updatedAt
