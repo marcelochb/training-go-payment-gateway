@@ -1,8 +1,8 @@
 package domain
 
 type IAccountRepository interface {
-	Save(account *Account) error
-	FindByAPIKey(apiKey string) (*Account, error)
-	FindByID(id string) (*Account, error)
-	UpdateBalance(account *Account) error
+	Save(account *AccountEntity) error
+	FindByAPIKey(apiKey string) (*AccountEntity, error)
+	FindByID(id string) (*AccountEntity, error)
+	UpdateBalance(account *AccountEntity) error
 }

@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-type Account struct {
+type AccountEntity struct {
 	ID        string
 	Name      string
 	Email     string
@@ -29,9 +29,9 @@ func generateAPIKey() string {
 	return hex.EncodeToString(key)
 }
 
-func NewAccount(name, email string) *Account {
+func NewAccount(name, email string) *AccountEntity {
 
-	account := &Account{
+	account := &AccountEntity{
 		ID:        uuid.New().String(),
 		Name:      name,
 		Email:     email,
@@ -44,7 +44,7 @@ func NewAccount(name, email string) *Account {
 	return account
 }
 
-func (account *Account) AddBalance(amount float64) {
+func (account *AccountEntity) AddBalance(amount float64) {
 	account.Mutex.Lock()
 	defer account.Mutex.Unlock()
 	account.Balance += amount
