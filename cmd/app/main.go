@@ -8,7 +8,7 @@ import (
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"github.com/marcelochb/training-go-payment-gateway/internal/repository"
+	repository "github.com/marcelochb/training-go-payment-gateway/internal/repository/account"
 	"github.com/marcelochb/training-go-payment-gateway/internal/service"
 	"github.com/marcelochb/training-go-payment-gateway/internal/web/server"
 )

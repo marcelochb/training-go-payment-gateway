@@ -3,13 +3,14 @@ package service
 import (
 	"github.com/marcelochb/training-go-payment-gateway/internal/domain"
 	"github.com/marcelochb/training-go-payment-gateway/internal/dto"
+	repository "github.com/marcelochb/training-go-payment-gateway/internal/repository/account"
 )
 
 type AccountService struct {
-	repository domain.IAccountRepository
+	repository repository.IAccountRepository
 }
 
-func NewAccountService(repository domain.IAccountRepository) *AccountService {
+func NewAccountService(repository repository.IAccountRepository) *AccountService {
 	return &AccountService{repository: repository}
 }
 
