@@ -21,11 +21,11 @@ type AccountDtoOuput struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func ToDomain(dto AccountDtoInput) *domain.AccountEntity {
+func ToAccountEntity(dto AccountDtoInput) *domain.AccountEntity {
 	return domain.NewAccount(dto.Name, dto.Email)
 }
 
-func FromDomain(account *domain.AccountEntity) AccountDtoOuput {
+func FromAccountEntity(account *domain.AccountEntity) AccountDtoOuput {
 	return AccountDtoOuput{
 		ID:        account.ID,
 		Name:      account.Name,

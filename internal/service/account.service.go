@@ -15,7 +15,7 @@ func NewAccountService(repository repository.IAccountRepository) *AccountService
 }
 
 func (service *AccountService) CreateAccount(input dto.AccountDtoInput) (*dto.AccountDtoOuput, error) {
-	account := dto.ToDomain(input)
+	account := dto.ToAccountEntity(input)
 	existingAccount, err := service.repository.FindByAPIKey(account.APIKey)
 	if err != nil && err != domain.ErrAccountNotFound {
 		return nil, err
@@ -27,7 +27,7 @@ func (service *AccountService) CreateAccount(input dto.AccountDtoInput) (*dto.Ac
 	if err != nil {
 		return nil, err
 	}
-	output := dto.FromDomain(account)
+	output := dto.FromAccountEntity(account)
 	return &output, nil
 }
 
@@ -41,7 +41,7 @@ func (service *AccountService) UpdateBalance(apikey string, amount float64) (*dt
 	if err != nil {
 		return nil, err
 	}
-	output := dto.FromDomain(account)
+	output := dto.FromAccountEntity(account)
 	return &output, nil
 }
 
@@ -50,7 +50,7 @@ func (service *AccountService) FindByAPIKey(apikey string) (*dto.AccountDtoOuput
 	if err != nil {
 		return nil, err
 	}
-	output := dto.FromDomain(account)
+	output := dto.FromAccountEntity(account)
 	return &output, nil
 }
 
@@ -59,6 +59,6 @@ func (service *AccountService) FindByID(id string) (*dto.AccountDtoOuput, error)
 	if err != nil {
 		return nil, err
 	}
-	output := dto.FromDomain(account)
+	output := dto.FromAccountEntity(account)
 	return &output, nil
 }
